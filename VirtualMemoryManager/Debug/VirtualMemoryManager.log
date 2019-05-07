@@ -1,0 +1,8 @@
+﻿  VirtualMemoryManager.cpp
+a:\zewailcity\year 3\spring\os\project\phase 2\virtualmemorymanager\virtualmemorymanager\virtualmemorymanager.cpp(94): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+a:\zewailcity\year 3\spring\os\project\phase 2\virtualmemorymanager\virtualmemorymanager\virtualmemorymanager.cpp(95): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+a:\zewailcity\year 3\spring\os\project\phase 2\virtualmemorymanager\virtualmemorymanager\virtualmemorymanager.cpp(98): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+a:\zewailcity\year 3\spring\os\project\phase 2\virtualmemorymanager\virtualmemorymanager\virtualmemorymanager.cpp(81): warning C4101: 'TLBhitRate': unreferenced local variable
+a:\zewailcity\year 3\spring\os\project\phase 2\virtualmemorymanager\virtualmemorymanager\virtualmemorymanager.cpp(84): warning C4101: 'FreeFrameNumber': unreferenced local variable
+a:\zewailcity\year 3\spring\os\project\phase 2\virtualmemorymanager\virtualmemorymanager\virtualmemorymanager.cpp(80): warning C4101: 'PageFaultRate': unreferenced local variable
+  VirtualMemoryManager.vcxproj -> A:\zewailcity\year 3\spring\OS\project\Phase 2\VirtualMemoryManager\Debug\VirtualMemoryManager.exe
