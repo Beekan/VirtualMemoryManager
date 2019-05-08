@@ -86,7 +86,7 @@ int main()
 			inputFile.open(FileName);
 		}
 	}
-	cout << "Please, Enter the output File Name: ";
+	cout << "Please,Enter the output File Name: ";
 	cin >> outFileName; cout << endl;
 	outputFile.open(outFileName);
 	
