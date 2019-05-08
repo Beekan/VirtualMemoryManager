@@ -12,7 +12,6 @@
 using namespace std;
 
 struct PageTablePairs {
-	int PageNO;
 	int FrameNO;
 	bool validbit=0;
 };
