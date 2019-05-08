@@ -1,8 +1,7 @@
 ﻿  VirtualMemoryManager.cpp
-a:\zewailcity\year 3\spring\os\project\phase 2\virtualmemorymanager\virtualmemorymanager\virtualmemorymanager.cpp(94): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-a:\zewailcity\year 3\spring\os\project\phase 2\virtualmemorymanager\virtualmemorymanager\virtualmemorymanager.cpp(95): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-a:\zewailcity\year 3\spring\os\project\phase 2\virtualmemorymanager\virtualmemorymanager\virtualmemorymanager.cpp(98): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-a:\zewailcity\year 3\spring\os\project\phase 2\virtualmemorymanager\virtualmemorymanager\virtualmemorymanager.cpp(81): warning C4101: 'TLBhitRate': unreferenced local variable
-a:\zewailcity\year 3\spring\os\project\phase 2\virtualmemorymanager\virtualmemorymanager\virtualmemorymanager.cpp(84): warning C4101: 'FreeFrameNumber': unreferenced local variable
-a:\zewailcity\year 3\spring\os\project\phase 2\virtualmemorymanager\virtualmemorymanager\virtualmemorymanager.cpp(80): warning C4101: 'PageFaultRate': unreferenced local variable
-  VirtualMemoryManager.vcxproj -> A:\zewailcity\year 3\spring\OS\project\Phase 2\VirtualMemoryManager\Debug\VirtualMemoryManager.exe
+a:\zewailcity\year 3\spring\os\project\virtualmemorymanager\virtualmemorymanager\virtualmemorymanager\virtualmemorymanager.cpp(107): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+a:\zewailcity\year 3\spring\os\project\virtualmemorymanager\virtualmemorymanager\virtualmemorymanager\virtualmemorymanager.cpp(108): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+a:\zewailcity\year 3\spring\os\project\virtualmemorymanager\virtualmemorymanager\virtualmemorymanager\virtualmemorymanager.cpp(116): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+a:\zewailcity\year 3\spring\os\project\virtualmemorymanager\virtualmemorymanager\virtualmemorymanager\virtualmemorymanager.cpp(72): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(208): note: see declaration of 'fopen'
+  VirtualMemoryManager.vcxproj -> A:\zewailcity\year 3\spring\OS\project\VirtualMemoryManager\VirtualMemoryManager\Debug\VirtualMemoryManager.exe
