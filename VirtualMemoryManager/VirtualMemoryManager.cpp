@@ -14,11 +14,13 @@ using namespace std;
 struct PageTablePairs {
 	int FrameNO;
 	bool validbit=0;
+	int duration = 0;
 };
 
 struct TLBtablePairs {
 	string VirtualAddress;
 	string PhysicalAddress;
+	int duration = 0;
 };
 
 string decToBinary(int n, int size)
@@ -59,8 +61,10 @@ int main()
 	int TLBhitNumber = 0;                 // TLB hit amount
 	int PageFaultNumber = 0;              // Amount of page Fault occurences   
 	int InputAddressAmount=0;
-
-
+	int MaxDuration;
+	int TLBMaxDurationIndex;
+	int PageMaxDurationIndex;
+	
 
 	//--Opening Files using the names collected from the user using Fstream 
 
@@ -111,7 +115,7 @@ int main()
 
 
 	//--Declaring tables and variables that assist table organization
-
+	int FrameBitsize=ceil(log2(NumberOfFrames));
 	int virtualMemorySize = pow(2, log2(NumberOfPages) + log2(PageSize));
 	int* FreeFrames = new int[NumberOfFrames - 1];
 	PageTablePairs* Pagetable=new PageTablePairs[NumberOfPages-1];      
@@ -121,13 +125,17 @@ int main()
 	int currentFreeFrameindex = 0;                                     // A counter to know which Frame Number is going to be replaced next using FIFO
 	int currentTLBtableindex = 0;                                      // A counter to know which table input is going to be replaced next using FIFO
 
-	
+	for (int i = 0; i < TLBenteries - 1; i++) {
+		TLBtable[i].PhysicalAddress == "0";
+	}
 
 
 	//--While statement that hold all the simulation together
 
 	while (true) {
-		TLBhit=0;                
+		TLBhit=0; 
+		TLBMaxDurationIndex = 0;
+		PageMaxDurationIndex = 0;
 
 
 		//--Reading Memory input from user
@@ -176,7 +184,7 @@ int main()
 				InputPageOffset = stoi(MemoryInputBin.substr(PagesbitSize , MemoryInputBin.length()), nullptr, 2);
 			}
 			else {
-				cout << "Input Virtual address is invalid."; break;
+				cout << "Input Virtual address is invalid."; return 0;
 			}
 		}
 
@@ -198,14 +206,26 @@ int main()
 		if (TLBhit == 0) {
 			for (int i = 0; i < NumberOfPages; i++) {
 				if (i== InputPageNO && Pagetable[i].validbit == 1) {
-					outputBin = decToBinary(Pagetable[i].FrameNO, PagesbitSize) + decToBinary(InputPageOffset, PagesbitSize);
+					outputBin = decToBinary(Pagetable[i].FrameNO, FrameBitsize) + decToBinary(InputPageOffset, PagesizebitSize);	
 					outputDec = stoi(outputBin, nullptr, 2);
 
 
 					// Updating TLB
-					TLBtable[currentTLBtableindex].VirtualAddress = MemoryInputBin.substr(0, PagesbitSize);
-					TLBtable[currentTLBtableindex].PhysicalAddress = outputBin.substr(0, PagesbitSize);
-					currentTLBtableindex = (currentTLBtableindex + 1) % (TLBenteries-1);
+					for (int j = 0; j < TLBenteries - 1; j++) {
+						if (TLBtable[j].PhysicalAddress == "0") {
+							TLBtable[j].VirtualAddress = MemoryInputBin.substr(0, PagesbitSize);
+							TLBtable[j].PhysicalAddress = outputBin.substr(0, PagesbitSize);
+							TLBhit = 1;
+							currentFreeFrameindex = (j+1)%(TLBenteries-1);
+							break;
+						}
+					}
+					if (TLBhit == 0) {
+						TLBtable[currentTLBtableindex].VirtualAddress = MemoryInputBin.substr(0, PagesbitSize);
+						TLBtable[currentTLBtableindex].PhysicalAddress = outputBin.substr(0, PagesbitSize);
+						currentTLBtableindex = (currentTLBtableindex + 1) % (TLBenteries - 1);
+
+					}
 					break;
 				}
 
@@ -225,9 +245,19 @@ int main()
 					}
 
 					// Assigning a free frame using FIFO
+					for (int z = 0; z < NumberOfPages;z++) {
+						if (Pagetable[z].FrameNO == currentFreeFrameindex)
+							Pagetable[z].validbit == 0;
+					}
+					for (int i = 0; i < TLBenteries - 1; i++) {
+						if(!TLBtable[i].PhysicalAddress.compare(decToBinary(currentFreeFrameindex,FrameBitsize)))
+							TLBtable[i].PhysicalAddress == "0";
+					}
+
 					Pagetable[i].FrameNO = currentFreeFrameindex;
+					Pagetable[i].validbit = 1;
 					currentFreeFrameindex = (currentFreeFrameindex + 1) % (NumberOfFrames - 1);  //updates the free frame counter according to FIFO
-					Pagetable[i].validbit = 1;                                                   
+					                                                   
 					PageFaultNumber++;
 					i--;
 					continue;
